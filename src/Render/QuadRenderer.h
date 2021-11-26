@@ -31,6 +31,7 @@ namespace ForestHunt {
         void EndBatch();
 
         void DrawQuad(const glm::vec3& position);
+        void DrawQuad(const glm::vec3& position, const glm::vec4& tint);
 
     private:
         void UpdateBatchVertexData();

@@ -177,3 +177,15 @@ void QuadRenderer::DrawQuad(const glm::vec3& position) {
 
     s_Batch.IndexCount += 6; // 6 indices per quad
 }
+
+void QuadRenderer::DrawQuad(const glm::vec3& position, const glm::vec4& tint) {
+    AllocateVertices(QUAD_VERTEX_COUNT);
+
+    for(uint32_t i = 0; i < QUAD_VERTEX_COUNT; i++) {
+        s_Batch.VertexPtr->Position = position + QUAD_VERTEX_POSITIONS[i];
+        s_Batch.VertexPtr->Tint = tint;
+        s_Batch.VertexPtr++;
+    }
+
+    s_Batch.IndexCount += 6; // 6 indices per quad
+}
