@@ -14,6 +14,7 @@ namespace ForestHunt {
 
         void SetAspectRatio(float width, float height) {
             m_AspectRatio = width / height;
+            UpdateProjection();
         }
 
         void SetZoom(float zoom) { m_Zoom = zoom; }

@@ -8,6 +8,10 @@ static const char* GAME_NAME = "Forest Hunt";
 static const char* GAME_VERSION = "v1.0";
 
 static void FrameBufferSizeCallback(GLFWwindow* window, int width, int height) {
+
+    if(SceneManager::GetActiveSceneCamera() != nullptr)
+        SceneManager::GetActiveSceneCamera()->SetAspectRatio(width, height);
+
     glViewport(0, 0, width, height);
 }
 
