@@ -37,8 +37,8 @@ kind "ConsoleApp"
     }
 
     links {
-        -- "GLFW",
-        -- "Glad"
+        "GLFW",
+        "Glad"
     }
 
     filter "system:macosx"
@@ -79,3 +79,6 @@ kind "ConsoleApp"
         defines {
             "NDEBUG"
         }
+
+include "vendor/glfw/premake5.lua"
+include "vendor/glad/premake5.lua"
