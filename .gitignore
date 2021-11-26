@@ -1,0 +1,9 @@
+# Mac OS
+.DS_Store
+
+# Build
+build/
+build-int/
+Makefile
+ForestHunt.make
+.make
