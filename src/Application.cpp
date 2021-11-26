@@ -4,8 +4,14 @@
 
 using namespace ForestHunt;
 
+static void Update(float deltaTime) {
+
+    // std::cout << deltaTime << std::endl;
+
+}
+
 int main() {
 
-    Display::CreateDisplay();    
+    Display::CreateDisplay(Update);    
 
 }
