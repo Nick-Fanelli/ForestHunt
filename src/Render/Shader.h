@@ -17,6 +17,8 @@ namespace ForestHunt {
 
         void Bind() const;
 
+        bool IsCreated() const { return m_ProgramID != -1; }
+
     private:
         void AttachVertexShader(const std::string& source);
         void AttachFragmentShader(const std::string& source);
