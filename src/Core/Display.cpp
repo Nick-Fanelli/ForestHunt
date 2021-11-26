@@ -11,9 +11,13 @@ static void FrameBufferSizeCallback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
-void Display::CreateDisplay(std::function<void(float)> function) {
+void Display::CreateDisplay(std::function<void()> initPtr, std::function<void(float)> updatePtr) {
 
-    glfwInit();
+    if(!glfwInit()) {
+        std::cout << "Could not initialize GLFW" << std::endl;
+        return;
+    }
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -51,6 +55,8 @@ void Display::CreateDisplay(std::function<void(float)> function) {
 
     uint32_t frameCount = 0;
 
+    initPtr();
+    
     while(!glfwWindowShouldClose(s_WindowPtr)) {
         // Input
 
@@ -59,7 +65,7 @@ void Display::CreateDisplay(std::function<void(float)> function) {
 
         // Update
         if(deltaTime >= 0) {
-            function(deltaTime);
+            updatePtr(deltaTime);
         }
 
         glfwSwapBuffers(s_WindowPtr);

@@ -22,6 +22,11 @@ void Shader::Bind() const {
 }
 
 static void ReadFile(const std::filesystem::path& filepath, std::string* result) {
+
+    if(!std::filesystem::exists(filepath)) {
+        std::cout << "Warning: Filepath '" << filepath.string() << "' doesn't exist" << std::endl;
+    }
+
     std::ifstream fileStream(filepath);
     std::string line;
 
@@ -36,16 +41,16 @@ void Shader::Create() {
     std::string vertexSource, fragmentSource;
 
     std::stringstream vertexFilepath;
-    vertexFilepath << "res/shaders/" << m_ProgramID << ".vert.glsl";
+    vertexFilepath << "res/shaders/" << m_ShaderName << ".vert.glsl";
 
     std::stringstream fragmentFilepath;
-    vertexFilepath << "res/shaders/" << m_ProgramID << ".frag.glsl";
+    fragmentFilepath << "res/shaders/" << m_ShaderName << ".frag.glsl";
 
     ReadFile(std::filesystem::path(vertexFilepath.str()), &vertexSource);
     ReadFile(std::filesystem::path(fragmentFilepath.str()), &fragmentSource);
 
     AttachVertexShader(vertexSource);
-    AttachVertexShader(fragmentSource);
+    AttachFragmentShader(fragmentSource);
     
     Link();
 }
