@@ -122,3 +122,12 @@ void Shader::Link() {
     glDeleteShader(m_VertexID);
     glDeleteShader(m_FragmentID);
 }
+
+GLint Shader::GetUniformLocation(const char* varName) const {
+    return glGetUniformLocation(m_ProgramID, varName);
+}
+
+
+void Shader::AddUniformMat4(GLint location, const glm::mat4& mat4) const {
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4));
+}

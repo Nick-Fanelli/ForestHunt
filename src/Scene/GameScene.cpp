@@ -16,12 +16,12 @@ void GameScene::OnUpdate(float deltaTime) {
 
     s_QuadRenderer.StartBatch();
 
-    s_QuadRenderer.DrawQuad({ -1.0f, -1.0f, 0.0f });
+    s_QuadRenderer.DrawQuad({ -0.75f, 0.0f, 0.0f });
+    s_QuadRenderer.DrawQuad({ 0.75f, 0.0f, 0.0f });
 
     s_QuadRenderer.EndBatch();
-
 }
 
 void GameScene::OnDestroy() {
-    
+
 }

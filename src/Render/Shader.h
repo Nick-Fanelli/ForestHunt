@@ -19,6 +19,10 @@ namespace ForestHunt {
 
         bool IsCreated() const { return m_ProgramID != -1; }
 
+        GLint GetUniformLocation(const char* varName) const;
+
+        void AddUniformMat4(GLint location, const glm::mat4& mat4) const;
+
     private:
         void AttachVertexShader(const std::string& source);
         void AttachFragmentShader(const std::string& source);

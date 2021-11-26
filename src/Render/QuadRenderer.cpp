@@ -2,6 +2,8 @@
 
 #include "Shader.h"
 
+#include "Scene/Scene.h"
+
 using namespace ForestHunt;
 
 static constexpr uint32_t QUAD_VERTEX_COUNT = 4;
@@ -105,6 +107,12 @@ void QuadRenderer::Render() {
     // Bind the Shader
     s_Shader.Bind();
 
+    // Get Uniform Locations
+    static const GLint projectionViewMatrixLocation = s_Shader.GetUniformLocation("uProjectionViewMatrix");
+
+    // Add Uniforms To Shader
+    s_Shader.AddUniformMat4(projectionViewMatrixLocation, SceneManager::GetActiveSceneCamera()->GetViewProjectionMatrix());
+
     // Bind the VAO
     glBindVertexArray(s_Batch.VaoID);
 
@@ -162,7 +170,7 @@ void QuadRenderer::DrawQuad(const glm::vec3& position) {
     AllocateVertices(QUAD_VERTEX_COUNT);
 
     for(uint32_t i = 0; i < QUAD_VERTEX_COUNT; i++) {
-        s_Batch.VertexPtr->Position = position * QUAD_VERTEX_POSITIONS[i];
+        s_Batch.VertexPtr->Position = position + QUAD_VERTEX_POSITIONS[i];
         s_Batch.VertexPtr->Tint = { 1.0f, 1.0f, 1.0f, 1.0f };
         s_Batch.VertexPtr++;
     }
